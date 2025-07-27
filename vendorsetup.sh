@@ -18,22 +18,21 @@
 # 	Please maintain this if you use this script or any part of it
 #
 
-FOX_MANIFEST_ROOT=$(gettop)
-if [ -f $FOX_MANIFEST_ROOT/bootable/recovery/orangefox_defaults.go -a -f $FOX_MANIFEST_ROOT/bootable/recovery/orangefox.mk ]; then
-	#export PLATFORM_VERSION="11.0"
 	if [ -z "$TW_DEFAULT_LANGUAGE" ]; then
 		unset TW_DEFAULT_LANGUAGE
 		export TW_DEFAULT_LANGUAGE="zh_CH"
 	fi
 	export OF_KEEP_FORCED_ENCRYPTION=1
 	export OF_PATCH_AVB20=1
+	export FOX_VARIANT=A16
 	#export OF_SCREEN_H=2340
 	#export OF_STATUS_H=80
 	#export OF_STATUS_INDENT_LEFT=48
 	#export OF_STATUS_INDENT_RIGHT=48
-	export OF_USE_MAGISKBOOT=1
+	export OF_USE_MAGISKBOOT=0
+	export FOX_DELETE_MAGISK_ADDON=1
 	export FOX_AB_DEVICE=1
-	export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
+	export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=0
 	export OF_DONT_PATCH_ENCRYPTED_DEVICE=1
 	export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
 	export OF_NO_TREBLE_COMPATIBILITY_CHECK=1
@@ -52,7 +51,7 @@ if [ -f $FOX_MANIFEST_ROOT/bootable/recovery/orangefox_defaults.go -a -f $FOX_MA
 	export FOX_USE_SED_BINARY=1
 	export FOX_USE_XZ_UTILS=1
 	export FOX_REPLACE_BUSYBOX_PS=1
-	export OF_USE_NEW_MAGISKBOOT=1
+	export OF_USE_NEW_MAGISKBOOT=0
 	#export FOX_BUGGED_AOSP_ARB_WORKAROUND="1510672800"; # Tue Nov 14 15:20:00 GMT 2017
 
 	# OTA for custom ROMs
@@ -72,6 +71,4 @@ if [ -f $FOX_MANIFEST_ROOT/bootable/recovery/orangefox_defaults.go -a -f $FOX_MA
 	   export | grep "TARGET_" >> $FOX_BUILD_LOG_FILE
 	   export | grep "TW_" >> $FOX_BUILD_LOG_FILE
 	fi
-fi
-#
 
